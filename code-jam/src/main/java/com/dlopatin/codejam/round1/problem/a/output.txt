@@ -1,0 +1,100 @@
+Case #1: NOT POSSIBLE
+Case #2: 0
+Case #3: 0
+Case #4: 0
+Case #5: NOT POSSIBLE
+Case #6: 0
+Case #7: NOT POSSIBLE
+Case #8: 6
+Case #9: NOT POSSIBLE
+Case #10: 6
+Case #11: 0
+Case #12: 0
+Case #13: NOT POSSIBLE
+Case #14: NOT POSSIBLE
+Case #15: 0
+Case #16: 0
+Case #17: 1
+Case #18: NOT POSSIBLE
+Case #19: 0
+Case #20: 0
+Case #21: 0
+Case #22: 0
+Case #23: 0
+Case #24: 0
+Case #25: 0
+Case #26: NOT POSSIBLE
+Case #27: 0
+Case #28: NOT POSSIBLE
+Case #29: 0
+Case #30: 0
+Case #31: NOT POSSIBLE
+Case #32: 2
+Case #33: 0
+Case #34: NOT POSSIBLE
+Case #35: NOT POSSIBLE
+Case #36: 0
+Case #37: NOT POSSIBLE
+Case #38: 0
+Case #39: NOT POSSIBLE
+Case #40: 2
+Case #41: 0
+Case #42: NOT POSSIBLE
+Case #43: 6
+Case #44: 3
+Case #45: 0
+Case #46: 0
+Case #47: 0
+Case #48: 7
+Case #49: 3
+Case #50: 0
+Case #51: 0
+Case #52: 3
+Case #53: NOT POSSIBLE
+Case #54: NOT POSSIBLE
+Case #55: 0
+Case #56: 5
+Case #57: 1
+Case #58: 7
+Case #59: 0
+Case #60: 0
+Case #61: 0
+Case #62: NOT POSSIBLE
+Case #63: 0
+Case #64: 0
+Case #65: 1
+Case #66: 5
+Case #67: NOT POSSIBLE
+Case #68: 0
+Case #69: NOT POSSIBLE
+Case #70: NOT POSSIBLE
+Case #71: 0
+Case #72: 5
+Case #73: NOT POSSIBLE
+Case #74: NOT POSSIBLE
+Case #75: NOT POSSIBLE
+Case #76: NOT POSSIBLE
+Case #77: 0
+Case #78: 4
+Case #79: 0
+Case #80: NOT POSSIBLE
+Case #81: NOT POSSIBLE
+Case #82: 0
+Case #83: 6
+Case #84: 0
+Case #85: 4
+Case #86: 0
+Case #87: 0
+Case #88: 0
+Case #89: 6
+Case #90: 0
+Case #91: 0
+Case #92: NOT POSSIBLE
+Case #93: 0
+Case #94: 0
+Case #95: NOT POSSIBLE
+Case #96: NOT POSSIBLE
+Case #97: 0
+Case #98: 0
+Case #99: 4
+Case #100: NOT POSSIBLE

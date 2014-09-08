@@ -1,0 +1,13 @@
+target
+bin
+build
+*.settings
+*.classpath
+*~
+.checkstyle
+*.log
+.metadata
+*.class
+*.db
+output
+uva/src/main/java/Main.java
