@@ -2,15 +2,13 @@ package com.dlopatin.uva.p11195;
 
 import java.util.Scanner;
 
-/*
- * http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=23&page=show_problem&problem=2136
-*/
+/* http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=23&page=show_problem&problem=2136 */
 public class Main {
 
-	private int[] rows;
+//	private int[] rows;
 	private int usedRows;
 	private int ld, rd;
-	private int[][] chessboard;
+	private final int[][] chessboard = new int[14][14];
 	private int result = 0;
 	private final int[] id = new int[1 << 14];
 	private final StringBuilder builder = new StringBuilder();
@@ -29,10 +27,10 @@ public class Main {
 			int counter = 0;
 			while ((n = scanner.nextInt()) != 0) {
 				result = 0;
-				rows = new int[n];
-				chessboard = new int[n][n];
+//				rows = new int[n];
+//				chessboard = new int[n][n];
 				for (int i = 0; i < n; i++) {
-					char[] line = scanner.next().toCharArray();
+					final char[] line = scanner.next().toCharArray();
 					for (int j = 0; j < n; j++) {
 						chessboard[i][j] = line[j] == '.' ? 1 : 0;
 					}
@@ -52,20 +50,21 @@ public class Main {
 	}
 
 	private void backtrack(int col, int n) {
-		int rowMask = usedRows & (-usedRows);
-		int rowToPlace = id[rowMask];
-		while (rowToPlace < n && rowMask > 0) {
+		int nextRowMask = usedRows & (-usedRows);
+		int rowToPlace = id[nextRowMask];
+		while (rowToPlace < n && nextRowMask > 0) {
 
 			if (place(col, rowToPlace, n)) {
 				// find bit from right to left with `rowToPlace` position
-				int ldMask = lDMask(n, col, rowToPlace);
-				int rdMask = rDMask(n, col, rowToPlace);
+				final int rowMask = 1 << rowToPlace;
+				final int ldMask = lDMask(n, col, rowToPlace);
+				final int rdMask = rDMask(n, col, rowToPlace);
 				// invert mask and use 'and' operation to set `rowToPlace` bit to 0 (disables row)
 				usedRows &= ~rowMask;
 				ld &= ~ldMask;
 				rd &= ~rdMask;
 
-				rows[col] = rowToPlace;
+//				rows[col] = rowToPlace;
 				if (col == n - 1) {
 					result++;
 				} else if (col != n - 1) {
@@ -75,8 +74,10 @@ public class Main {
 				ld |= ldMask;
 				rd |= rdMask;
 			}
-			rowMask = usedRows & (~0 << (rowToPlace + 1));
-			rowToPlace = id[rowMask & (-rowMask)];
+			// get mask with zeros after current row (e.g 00011010, row=1, => 00011000)
+			// to get next free row after current
+			nextRowMask = usedRows & (~0 << (rowToPlace + 1));
+			rowToPlace = id[nextRowMask & (-nextRowMask)];
 		}
 	}
 
@@ -91,8 +92,9 @@ public class Main {
 	}
 
 	// left diagonal mask based on function: row - col = const
+	// just remove multiply by 2 to reduce operations
 	private int lDMask(int n, int col, int row) {
-		return 1 << (2 * n - 1 - row + col);
+		return 1 << (n - 1 - row + col);
 	}
 
 	// right diagonal mask based on function: row + col = const
