@@ -7,10 +7,10 @@ import java.util.Scanner;
 */
 public class Main {
 
-	private int usedPos;
-
 	private static int[] DIGITS = new int[] { 0b1111110, 0b0110000, 0b1101101, 0b1111001, 0b0110011, 0b1011011,
 			0b1011111, 0b1110000, 0b1111111, 0b1111011 };
+
+	private int[] invalids;
 
 	public static void main(String[] args) {
 		new Main().doJob();
@@ -32,39 +32,42 @@ public class Main {
 					}
 					lights[i] = lightState;
 				}
-				usedPos = 0;
-//				String yesno = backtrack(0, resDominoes, dominoes) ? "MATCH" : "MISMATCH";
-//				result.append(yesno).append(System.lineSeparator());
+				invalids = new int[n];
+				for (int i = invalids.length - 2; i >= 0; i--) {
+					int mask = lights[i] ^ (lights[i] | lights[i + 1] | invalids[i + 1]);
+					invalids[i] = mask;
+				}
+				String yesno = "MISMATCH";
+				for (int i = 9; i >= lights.length - 1; i--) {
+					if (backtrack(0, i, lights)) {
+						yesno = "MATCH";
+						break;
+					}
+				}
+				result.append(yesno).append(System.lineSeparator());
 			}
 			System.out.println(result.toString().trim());
 		}
 
 	}
 
-//
-//	private boolean backtrack(int number, int[] lights) {
-//		while (number >= 0) {
-//			if (place(result[prevPos], dominoes[pos], pos)) {
-//				usedPos |= 1 << pos;
-//				if (result[prevPos].isRotationNeeded(dominoes[pos])) {
-//					dominoes[pos].rotate();
-//				}
-//				result[prevPos + 1] = dominoes[pos];
-//				if (prevPos + 1 == result.length - 2) {
-//					if (!result[prevPos + 1].isRotationNeeded(result[prevPos + 2])) {
-//						return true;
-//					}
-//				} else if (backtrack(prevPos + 1, result, dominoes)) {
-//					return true;
-//				}
-//				usedPos &= ~(1 << pos);
-//			}
-//		}
-//		return false;
-//	}
+	private boolean backtrack(int pos, int number, int[] lights) {
+		while (number >= 0 && pos <= lights.length - 1) {
+			if (place(number, lights[pos], invalids[pos])) {
+				if (pos == lights.length - 1) {
+					return true;
+				} else {
+					return backtrack(pos + 1, --number, lights);
+				}
+			} else {
+				return false;
+			}
+		}
+		return false;
+	}
 
-	private boolean place(int number, int light) {
-		return (light | DIGITS[number]) == DIGITS[number] && (usedPos & (1 << number)) == 0;
+	private boolean place(int number, int light, int invalids) {
+		return (light | DIGITS[number]) == DIGITS[number] && (DIGITS[number] & invalids) == 0;
 	}
 
 }
