@@ -1,4 +1,4 @@
-package com.dlopatin.codejam.round0.problem.b;
+package com.dlopatin.codejam.y2014.round0.problem.b;
 
 import java.io.File;
 import java.io.IOException;
