@@ -14,24 +14,27 @@ public class A {
 	private void doJob() {
 		try (Scanner scanner = new Scanner(System.in)) {
 			int n = scanner.nextInt();
-			int array[][] = new int[n][n];
+			int[] rowCnt = new int[n];
+			int[] colCnt = new int[n];
 			for (int i = 0; i < n; i++) {
 				char[] chars = scanner.next().toCharArray();
 				for (int j = 0; j < n; j++) {
-					array[i][j] = chars[j] == '.' ? 0 : 1;
+					int chocolate = chars[j] == '.' ? 0 : 1;
+					rowCnt[i] += chocolate;
+					colCnt[j] += chocolate;
 				}
 			}
 			long cnt = 0;
 			for (int i = 0; i < n; i++) {
-				for (int j = 0; j < n; j++) {
-					for (int k = j + 1; k < n; k++) {
-						cnt += array[i][j] == 1 && array[i][j] == array[i][k] ? 1 : 0;
-						cnt += array[j][i] == 1 && array[j][i] == array[k][i] ? 1 : 0;
-					}
-				}
+				cnt += calcCombination(rowCnt[i]);
+				cnt += calcCombination(colCnt[i]);
 			}
 			System.out.println(cnt);
 		}
+	}
+
+	private long calcCombination(int n) {
+		return (n * (n - 1)) / 2;
 	}
 
 }
