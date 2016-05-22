@@ -1,4 +1,4 @@
-package com.dlopatin.warmup;
+package com.dlopatin.y2014.warmup;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
