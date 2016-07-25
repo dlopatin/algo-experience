@@ -16,31 +16,24 @@ public class B {
             int n = scanner.nextInt();
             int m = scanner.nextInt();
             long free = n * (long) n;
-            boolean[] takenX = new boolean[n];
-            boolean[] takenY = new boolean[n];
+            boolean[] tackenX = new boolean[n];
+            boolean[] tackenY = new boolean[n];
+            int usedRowsCnt = 0;
+            int usedColsCnt = 0;
             StringBuilder res = new StringBuilder();
             for (int i = 0; i < m; i++) {
                 int x = scanner.nextInt() - 1;
                 int y = scanner.nextInt() - 1;
-                if (!takenX[x]) {
-                    for (int j = 0; j < n; j++) {
-                        if (!takenY[j]) {
-                            free--;
-                        }
-                    }
+                if (!tackenX[x]) {
+                    free -= n - usedRowsCnt;
+                    usedColsCnt++;
+                    tackenX[x] = true;
                 }
-                if (!takenY[y]) {
-                    for (int j = 0; j < n; j++) {
-                        if (!takenX[j]) {
-                            free--;
-                        }
-                    }
+                if (!tackenY[y]) {
+                    free -= n - usedColsCnt;
+                    usedRowsCnt++;
+                    tackenY[y] = true;
                 }
-                if (!takenX[x] && !takenY[y]) {
-                    free++;
-                }
-                takenX[x] = true;
-                takenY[y] = true;
                 res.append(free).append(" ");
             }
             System.out.println(res.toString().trim());
