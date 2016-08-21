@@ -1,9 +1,10 @@
 package com.dlopatin.codeforce.r368;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -24,58 +25,48 @@ public class B {
 				System.out.println(-1);
 				return;
 			}
-			@SuppressWarnings("unchecked")
-			ArrayList<Vertex>[] graph = new ArrayList[n];
+			List<Vertex> vertexes = new ArrayList<>(n);
 			for (int i = 0; i < m; i++) {
 				int v1 = scanner.nextInt() - 1;
 				int v2 = scanner.nextInt() - 1;
 				int l = scanner.nextInt();
-				putToArray(graph, v1, v2, l);
-				putToArray(graph, v2, v1, l);
+				vertexes.add(new Vertex(v1, v2, l));
 			}
-			int min = Integer.MAX_VALUE;
-			List<Integer> storages = new ArrayList<>(k);
+			Map<Integer, Integer> storages = new HashMap<>(k);
 			for (int i = 0; i < k; i++) {
-				storages.add(scanner.nextInt() - 1);
+				storages.put(scanner.nextInt() - 1, Integer.MAX_VALUE);
 			}
-			Comparator<Vertex> comparator = Comparator.comparing(Vertex::getLength);
-			for (int storage : storages) {
-				ArrayList<Vertex> vertexes = graph[storage];
-				if (vertexes != null) {
-					Collections.sort(vertexes, comparator);
-					for (int i = 0; i < vertexes.size(); i++) {
-						Vertex vertex = vertexes.get(i);
-						if (!storages.contains(vertex.getV())) {
-							min = Math.min(min, vertex.getLength());
-							break;
-						}
-					}
+			for (Vertex vertex : vertexes) {
+				Integer v1 = storages.get(vertex.getV1());
+				Integer v2 = storages.get(vertex.getV2());
+				if (v1 == null && v2 != null) {
+					storages.put(vertex.getV2(), Math.min(v2, vertex.getLength()));
+				} else if (v1 != null && v2 == null) {
+					storages.put(vertex.getV1(), Math.min(v1, vertex.getLength()));
 				}
 			}
+			Integer min = storages.values().stream().min(Comparator.naturalOrder()).get();
 			System.out.println(min == Integer.MAX_VALUE ? -1 : min);
 		}
 	}
 
-	private void putToArray(ArrayList<Vertex>[] graph, int v1, int v2, int l) {
-		ArrayList<Vertex> list = graph[v1];
-		if (list == null) {
-			list = new ArrayList<>();
-			graph[v1] = list;
-		}
-		list.add(new Vertex(v2, l));
-	}
-
 	private static class Vertex {
-		private final int v;
+		private final int v1;
+		private final int v2;
 		private final int length;
 
-		public Vertex(int v, int length) {
-			this.v = v;
+		public Vertex(int v1, int v2, int length) {
+			this.v1 = v1;
+			this.v2 = v2;
 			this.length = length;
 		}
 
-		public int getV() {
-			return v;
+		public int getV1() {
+			return v1;
+		}
+
+		public int getV2() {
+			return v2;
 		}
 
 		public int getLength() {
