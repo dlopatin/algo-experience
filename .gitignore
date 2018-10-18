@@ -13,3 +13,5 @@ build
 output
 uva/src/main/java/Main.java
 RemoteSystemsTempFiles
+**/.idea
+__pycache__
