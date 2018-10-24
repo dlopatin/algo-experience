@@ -5,7 +5,6 @@ build
 *.classpath
 *~
 .checkstyle
-*.log
 .metadata
 .recommenders
 *.class
@@ -13,5 +12,15 @@ build
 output
 uva/src/main/java/Main.java
 RemoteSystemsTempFiles
-**/.idea
 __pycache__
+
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+# File-based project format
+*.iws
