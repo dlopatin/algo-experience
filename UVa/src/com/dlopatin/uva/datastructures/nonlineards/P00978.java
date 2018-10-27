@@ -1,4 +1,4 @@
-package com.dlopatin.uva.datastructures.nonlineards.p00978;
+package com.dlopatin.uva.datastructures.nonlineards;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,10 +8,10 @@ import java.util.*;
 /*
  * https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=11&page=show_problem&problem=919
  */
-public class Main {
+public class P00978 {
 
     public static void main(String[] args) throws IOException {
-        Main.doJob();
+        P00978.doJob();
     }
 
     private static void doJob() throws IOException {

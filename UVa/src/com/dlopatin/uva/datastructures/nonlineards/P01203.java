@@ -1,4 +1,4 @@
-package com.dlopatin.uva.datastructures.nonlineards.p01203;
+package com.dlopatin.uva.datastructures.nonlineards;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,10 +10,10 @@ import java.util.StringTokenizer;
 /*
  * https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=247&page=show_problem&problem=3644
  */
-public class Main {
+public class P01203 {
 
     public static void main(String[] args) throws IOException {
-        Main.doJob();
+        P01203.doJob();
     }
 
     private static void doJob() throws IOException {

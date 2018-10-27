@@ -1,4 +1,4 @@
-package com.dlopatin.uva.datastructures.nonlineards.p11136;
+package com.dlopatin.uva.datastructures.nonlineards;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,15 +9,15 @@ import java.util.TreeMap;
 /*
  * https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=23&page=show_problem&problem=2077
  */
-public class Main {
+public class P11136 {
 
     public static void main(String[] args) throws IOException {
-        Main.doJob();
+        P11136.doJob();
     }
 
     private static void doJob() throws IOException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-            int t = 0;
+            int t;
             TreeMap<Integer, Integer> bills = new TreeMap<>();
             while ((t = Integer.parseInt(reader.readLine())) != 0) {
                 bills.clear();
