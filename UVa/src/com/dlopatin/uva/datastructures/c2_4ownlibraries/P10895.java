@@ -19,7 +19,7 @@ public class P10895 {
                 StringTokenizer tokenizer = new StringTokenizer(line);
                 int m = Integer.parseInt(tokenizer.nextToken());
                 int n = Integer.parseInt(tokenizer.nextToken());
-                List<ArrayList<Edge>> graph = new ArrayList<>(n);
+                List<List<Edge>> graph = new ArrayList<>(n);
                 for (int i = 0; i < n; i++) {
                     graph.add(new ArrayList<>());
                 }
@@ -37,7 +37,7 @@ public class P10895 {
                 // print
                 StringBuilder builder = new StringBuilder(n + " " + m);
                 builder.append("\n");
-                for (ArrayList<Edge> edges : graph) {
+                for (List<Edge> edges : graph) {
                     builder.append(edges.size());
                     edges.forEach(edge -> builder.append(" ").append(edge.v + 1));
                     builder.append("\n");
