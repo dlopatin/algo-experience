@@ -3,19 +3,24 @@ package com.dlopatin.uva.datastructures.c2_4ownlibraries.quadtree;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static java.lang.Integer.parseInt;
 
+/**
+ * https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=2272
+ * Census
+ * Quadtree solution
+ */
 public class P11297 {
 
     public static void main(String[] args) throws Exception {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             int n = parseInt(reader.readLine());
-            int sizeOfQuadTree = n % 4 == 0 ? n : (n + 4) - (n % 4);
             PointQuadtree quadtree = new PointQuadtree(new Rectangle(
-                    new Point(0, 0),
-                    new Point(sizeOfQuadTree, sizeOfQuadTree)));
+                    new Point(1, 1),
+                    new Point(n, n)));
             for (int y = 1; y <= n; y++) {
                 StringTokenizer data = new StringTokenizer(reader.readLine());
                 for (int x = 1; x <= n; x++) {
@@ -108,14 +113,14 @@ public class P11297 {
         }
 
         public boolean includes(Rectangle other) {
-            return topLeft.x <= other.topLeft.x + 1 &&
+            return topLeft.x <= other.topLeft.x &&
                     botRight.x >= other.botRight.x &&
-                    topLeft.y <= other.topLeft.y + 1 &&
+                    topLeft.y <= other.topLeft.y &&
                     botRight.y >= other.botRight.y;
         }
 
         public boolean isDivisible() {
-            return Math.abs(topLeft.x - botRight.x) > 1 || Math.abs(topLeft.y - botRight.y) > 1;
+            return Math.abs(topLeft.x - botRight.x) >= 1 || Math.abs(topLeft.y - botRight.y) >= 1;
         }
 
         @Override
@@ -155,11 +160,11 @@ public class P11297 {
 
             if (boundary.isDivisible()) {
                 subdivide();
-                
+
                 boolean inserted = nw.insert(point) || ne.insert(point) || sw.insert(point) || se.insert(point);
                 if (inserted) {
-                    max = Stream.of(nw.max, ne.max, sw.max, se.max).max(Integer::compareTo).get();
-                    min = Stream.of(nw.min, ne.min, sw.min, se.min).min(Integer::compareTo).get();
+                    max = IntStream.of(nw.max, ne.max, sw.max, se.max).max().getAsInt();
+                    min = IntStream.of(nw.min, ne.min, sw.min, se.min).min().getAsInt();
                 }
                 return inserted;
             } else {
@@ -198,15 +203,15 @@ public class P11297 {
             nw = new PointQuadtree(new Rectangle(boundary.topLeft, new Point(xMiddle, yMiddle)));
 
             ne = new PointQuadtree(new Rectangle(
-                    new Point(xMiddle, yTop),
+                    new Point(xMiddle + 1, yTop),
                     new Point(xBottom, yMiddle)));
 
             sw = new PointQuadtree(new Rectangle(
-                    new Point(xTop, yMiddle),
+                    new Point(xTop, yMiddle + 1),
                     new Point(xMiddle, yBottom)));
 
             se = new PointQuadtree(new Rectangle(
-                    new Point(xMiddle, yMiddle),
+                    new Point(xMiddle + 1, yMiddle + 1),
                     new Point(xBottom, yBottom)));
 
         }
