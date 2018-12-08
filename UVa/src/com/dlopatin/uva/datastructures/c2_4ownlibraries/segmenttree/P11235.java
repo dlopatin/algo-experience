@@ -14,7 +14,7 @@ import static java.lang.Integer.*;
  * Segment tree<p>
  * Frequent values
  *
- * @see <a href="https://github.com/luisfcofv/competitive-programming-book/blob/master/ch2/ch2_09_segmenttree_ds.java">SegmentTree</a>
+ * @see <a href="https://github.com/luisfcofv/competitive-programming-book/blob/master/ch2/ch2_09_segmenttree_ds.java">LazySegmentTree</a>
  */
 public class P11235 {
 
