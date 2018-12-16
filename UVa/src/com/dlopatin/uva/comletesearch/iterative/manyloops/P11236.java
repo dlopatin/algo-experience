@@ -12,11 +12,11 @@ public class P11236 {
      * and then in answet devide each number by 100. Cause we can get 0.01 and 0.01 and in multiplication it would be
      * 100000!!!
      * Thus we have to divede each number by 100 in formula to get next equation:
-     * <p>
-     * a     b     c     d      a     b     c     d
-     * --- + --- + --- + --- = --- * --- * --- * ---
+     * <pre>
+     *  a     b     c     d     a     b     c     d
+     * ‒‒‒ + ‒‒‒ + ‒‒‒ + ‒‒‒ = ‒‒‒ * ‒‒‒ * ‒‒‒ * ‒‒‒
      * 100   100   100   100   100   100   100   100
-     * <p>
+     * </pre>
      * from this equation will get d:
      * d = ((a+b+c) * 10^6)/(abc - 10^6)
      */
@@ -24,9 +24,9 @@ public class P11236 {
         StringBuilder result = new StringBuilder();
         int n = 2000;
         int maxMult = 2_000_000_000; // as 2000 * 10^6, 10^6 is taken from the equation of d.
-        for (int a = 1; a <= n && a * a * a * a <= maxMult; a++) {
-            for (int b = a; b <= n - a && a * b * b * b <= maxMult; b++) {
-                for (int c = b; c <= n - a - b && a * b * c * c <= maxMult; c++) {
+        for (int a = 1; 4 * a <= n && a * a * a * a <= maxMult; a++) {
+            for (int b = a; a + 3 * b <= n && a * b * b * b <= maxMult; b++) {
+                for (int c = b; a + b + 2 * c <= n && a * b * c * c <= maxMult; c++) {
                     long divider = ((long) a) * b * c - 1_000_000;
                     long sum = (a + b + c) * 1_000_000;
                     if (divider > 0 && sum % divider == 0) {
