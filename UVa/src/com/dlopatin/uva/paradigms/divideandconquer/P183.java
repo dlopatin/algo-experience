@@ -36,11 +36,9 @@ public class P183 {
                     result.append("D").append(String.format("%4d%4d\n", n, m));
                     StringBuilder d = new StringBuilder();
                     printD(0, 0, n, m, d);
-                    int prev = 0;
                     for (int i = 50; i < d.length(); i += 50) {
                         d.insert(i, "\n");
                         i++;
-//                        result.append(d.substring(prev, i)).append("\n");
                     }
                     result.append(d);
                 } else {
