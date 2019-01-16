@@ -37,7 +37,7 @@ public class LongFlowOddDetector {
         StringBuilder result = new StringBuilder();
 
         for (int i = 63; i >= 0; i--) {
-            long mask = 1 << i;
+            long mask = 1L << i;
             result.append((number & mask) != 0 ? "1" : "0");
 
             if (i % groupSize == 0) {
