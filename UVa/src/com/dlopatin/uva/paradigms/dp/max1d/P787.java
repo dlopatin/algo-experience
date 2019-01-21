@@ -1,4 +1,4 @@
-package com.dlopatin.uva.paradigms.dp;
+package com.dlopatin.uva.paradigms.dp.max1d;
 
 import java.io.BufferedReader;
 import java.io.IOException;
