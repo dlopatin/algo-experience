@@ -1,4 +1,4 @@
-package com.dlopatin.codeforce.div3;
+package com.dlopatin.codeforce.div3.r535;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
