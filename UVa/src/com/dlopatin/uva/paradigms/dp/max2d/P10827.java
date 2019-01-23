@@ -58,9 +58,7 @@ public class P10827 {
         }
 
         int max = Integer.MIN_VALUE;
-        int n = b.length;
-        int m = b[0].length;
-        int lim = m / 2;
+        int lim = b[0].length / 2;
         for (int startI = 0; startI < lim; startI++) {
             for (int startJ = 0; startJ < lim; startJ++) {
                 for (int endI = startI; endI < startI + lim; endI++) {
